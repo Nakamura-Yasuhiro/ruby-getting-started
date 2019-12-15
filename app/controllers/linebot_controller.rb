@@ -37,11 +37,11 @@ class LinebotController < ApplicationController
                     #      text: "では紹介する相手を選んでください"
                     #  }
                         
-                #  elsif event.message["text"].include?("中村さんに診察を受けさせたい")
-                #      message = {
-                #          type: "text",
-                #          text: "それでは催促メッセージを送ります"
-                #      }
+                 elsif event.message["text"].include?("さん")
+                     message = {
+                         type: "text",
+                         text: "それでは" + event.message["text"] + "に催促メッセージを送ります"
+                     }
                 end
                 
                 client.reply_message(event["replyToken"], message)
@@ -111,14 +111,14 @@ class LinebotController < ApplicationController
               {
                 "type": "message",
                 # Botから送られてきたメッセージに表示される文字列です。
-                "label": "中村さんですか？",
+                "label": "中村さん",
                 # ボタンを押した時にBotに送られる文字列です。
-                "text": "はい"
+                "text": "中村さん"
               },
               {
                 "type": "message",
-                "label": "野々村さんですか",
-                "text": "はい"
+                "label": "野々村さん",
+                "text": "野々村さん"
               }
           ]
       }
