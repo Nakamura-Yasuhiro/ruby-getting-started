@@ -67,13 +67,16 @@ class LinebotController < ApplicationController
          
              message = {
                 type: "text",
-                text: "それでは催促メッセージを送ります"
+                text: "ギフト券を送ります"
             }
-            #message = {
-           #     type: "text",
-           #     originalContentUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg",
-           #     previewImageUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg"
-          #  }
+            
+            client.reply_message(event["replyToken"], message)
+            
+            message = {
+                type: "image",
+                originalContentUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg",
+                previewImageUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg"
+            }
             
             client.reply_message(event["replyToken"], message)
          end
