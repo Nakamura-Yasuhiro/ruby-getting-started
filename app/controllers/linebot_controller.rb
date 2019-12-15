@@ -44,10 +44,10 @@ class LinebotController < ApplicationController
                         type: "text",
                         text: "私の出る幕はないようです"
                     }
-                elsif event.message["text"].include?("どなたに健康診断をお勧めしますか？")
+                elsif event.message["text"].include?("中村さんに健康診断受けさせたい")
                     message = {
                         type: "text",
-                        text: "私の出る幕はないようです"
+                        text: "それでは催促メッセージを送ります"
                     }
                 end
                 
