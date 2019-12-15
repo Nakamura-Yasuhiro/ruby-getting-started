@@ -64,11 +64,16 @@ class LinebotController < ApplicationController
              client.reply_message(event["replyToken"], message)
            end
          when Line::Bot::Event::MemberJoined # join
-            message = {
+         
+             message = {
                 type: "text",
-                originalContentUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg",
-                previewImageUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg"
+                text: "それでは催促メッセージを送ります"
             }
+            #message = {
+           #     type: "text",
+           #     originalContentUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg",
+           #     previewImageUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg"
+          #  }
             
             client.reply_message(event["replyToken"], message)
          end
