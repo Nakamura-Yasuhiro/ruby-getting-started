@@ -52,7 +52,7 @@ class LinebotController < ApplicationController
                 end
                 
                 client.reply_message(event["replyToken"], message)
-               
+
            when Line::Bot::Event::MessageType::Location
              message = {
                type: "location",
@@ -63,7 +63,16 @@ class LinebotController < ApplicationController
              }
              client.reply_message(event["replyToken"], message)
            end
+         when Line::Bot::Event::MemberJoined # join
+            message = {
+                type: "text",
+                originalContentUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg",
+                previewImageUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg"
+            }
+            
+            client.reply_message(event["replyToken"], message)
          end
+         
        }
    
        head :ok
