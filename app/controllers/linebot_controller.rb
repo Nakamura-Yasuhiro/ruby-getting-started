@@ -42,7 +42,7 @@ class LinebotController < ApplicationController
                          type: "text",
                          text: "それでは" + event.message["text"] + "に催促メッセージを送ります"
                      }
-                 elsif event.message["text"].include?("中村が申し込んだよ")
+                 elsif event.message["text"].include?("中村")
                      message = {
                          type: "text",
                          text: "それでは" + event.message["text"] + "をグループに招待してください"
