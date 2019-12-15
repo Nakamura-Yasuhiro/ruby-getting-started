@@ -98,7 +98,7 @@ class LinebotController < ApplicationController
               {
                 "type": "message",
                 "label": "いいえ",
-                "text": "私の出る幕はないようです"
+                "text": "やっぱめんどくさいわ!!"
               }
           ]
       }
