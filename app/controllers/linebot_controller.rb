@@ -45,7 +45,7 @@ class LinebotController < ApplicationController
                         text: "私の出る幕はないようです"
                     }
                 end
-                
+            end
                 client.reply_message(event["replyToken"], message)
                
            when Line::Bot::Event::MessageType::Location
