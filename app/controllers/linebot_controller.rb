@@ -30,22 +30,18 @@ class LinebotController < ApplicationController
                     client.reply_message(event['replyToken'], template)
                         
                 
-                # elsif event.message["text"].include?("はい")
-                #     message = {
-                #         type: "text",
-                #         text: "では紹介する相手を選んでください"
-                #     }
+                 elsif event.message["text"].include?("はい")
+                    client.reply_message(event['replyToken'], template2)
+                    #  message = {
+                    #      type: "text",
+                    #      text: "では紹介する相手を選んでください"
+                    #  }
                         
-                # elsif event.message["text"].include?("いいえ")
-                #     message = {
-                #         type: "text",
-                #         text: "私の出る幕はないようです"
-                #     }
-                # elsif event.message["text"].include?("中村さんに診察を受けさせたい")
-                #     message = {
-                #         type: "text",
-                #         text: "それでは催促メッセージを送ります"
-                #     }
+                #  elsif event.message["text"].include?("中村さんに診察を受けさせたい")
+                #      message = {
+                #          type: "text",
+                #          text: "それでは催促メッセージを送ります"
+                #      }
                 end
                 
                 client.reply_message(event["replyToken"], message)
@@ -92,16 +88,42 @@ class LinebotController < ApplicationController
                 # Botから送られてきたメッセージに表示される文字列です。
                 "label": "はい",
                 # ボタンを押した時にBotに送られる文字列です。
-                "text": "いいえ"
+                "text": "はい、ではお願いします"
               },
               {
                 "type": "message",
-                "label": "では紹介する相手を選んでください",
-                "text": "そうですか"
+                "label": "いいえ",
+                "text": "私の出る幕はないようです"
               }
           ]
       }
     }
   end
+     
+  def template2
+    {
+      "type": "template",
+      "altText": "this is a confirm template",
+      "template": {
+          "type": "confirm",
+          "text": "誰に受けさせますか？",
+          "actions": [
+              {
+                "type": "message",
+                # Botから送られてきたメッセージに表示される文字列です。
+                "label": "中村さんですか？",
+                # ボタンを押した時にBotに送られる文字列です。
+                "text": "はい"
+              },
+              {
+                "type": "message",
+                "label": "野々村さんですか",
+                "text": "はい"
+              }
+          ]
+      }
+    }
+  end
+     
      
  end
