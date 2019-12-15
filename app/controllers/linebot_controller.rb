@@ -27,28 +27,25 @@ class LinebotController < ApplicationController
            case event.type
            when Line::Bot::Event::MessageType::Text
                 if event.message["text"].include?("健康診断")
-                    message = {
-                        type: "text",
-                        text: "健康診断の紹介ですか"
-                    }
-                    
-                
-                elsif event.message["text"].include?("はい")
-                    message = {
-                        type: "text",
-                        text: "では紹介する相手を選んでください"
-                    }
+                    client.reply_message(event['replyToken'], template)
                         
-                elsif event.message["text"].include?("いいえ")
-                    message = {
-                        type: "text",
-                        text: "私の出る幕はないようです"
-                    }
-                elsif event.message["text"].include?("中村さんに診察を受けさせたい")
-                    message = {
-                        type: "text",
-                        text: "それでは催促メッセージを送ります"
-                    }
+                
+                # elsif event.message["text"].include?("はい")
+                #     message = {
+                #         type: "text",
+                #         text: "では紹介する相手を選んでください"
+                #     }
+                        
+                # elsif event.message["text"].include?("いいえ")
+                #     message = {
+                #         type: "text",
+                #         text: "私の出る幕はないようです"
+                #     }
+                # elsif event.message["text"].include?("中村さんに診察を受けさせたい")
+                #     message = {
+                #         type: "text",
+                #         text: "それでは催促メッセージを送ります"
+                #     }
                 end
                 
                 client.reply_message(event["replyToken"], message)
@@ -66,17 +63,45 @@ class LinebotController < ApplicationController
          when Line::Bot::Event::MemberJoined # join
          
 
-            message = {
+            messages = [{
                 type: "image",
                 originalContentUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg",
                 previewImageUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg"
-            }
+            }]
             
-            client.reply_message(event["replyToken"], message)
+            client.reply_message(event["replyToken"], messages)
          end
          
        }
    
        head :ok
      end
+     
+       private
+
+  def template
+    {
+      "type": "template",
+      "altText": "this is a confirm template",
+      "template": {
+          "type": "confirm",
+          "text": "健康診断ですか？",
+          "actions": [
+              {
+                "type": "message",
+                # Botから送られてきたメッセージに表示される文字列です。
+                "label": "はい",
+                # ボタンを押した時にBotに送られる文字列です。
+                "text": "いいえ"
+              },
+              {
+                "type": "message",
+                "label": "では紹介する相手を選んでください",
+                "text": "そうですか"
+              }
+          ]
+      }
+    }
+  end
+     
  end
