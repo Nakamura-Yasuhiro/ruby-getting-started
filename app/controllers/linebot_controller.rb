@@ -11,7 +11,8 @@ class LinebotController < ApplicationController
        }
      end
      
-     def callback
+     def callback 
+         flag = 0
        body = request.body.read
    
        signature = request.env["HTTP_X_LINE_SIGNATURE"]
@@ -30,20 +31,21 @@ class LinebotController < ApplicationController
                     message = {
                         type: "text",
                         text: "健康診断の紹介ですか"
+                        flag = 1
                     }
+                    
                 
-                    if event.message["text"].include?("はい")
-                        message = {
-                            type: "text",
-                            text: "では紹介する相手を選んでください"
-                        }
+                if event.message["text"].include?("はい") && flag = 1
+                    message = {
+                        type: "text",
+                        text: "では紹介する相手を選んでください"
+                    }
                         
-                    elsif event.message["text"].include?("いいえ")
-                        message = {
-                            type: "text",
-                            text: "私の出る幕はないようです"
-                        }
-                    end
+                elsif event.message["text"].include?("いいえ")
+                    message = {
+                        type: "text",
+                        text: "私の出る幕はないようです"
+                    }
                 end
                 
                 client.reply_message(event["replyToken"], message)
