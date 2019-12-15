@@ -33,7 +33,7 @@ class LinebotController < ApplicationController
                     }
                     
                 
-                if event.message["text"].include?("はい")
+                elsif event.message["text"].include?("はい")
                     message = {
                         type: "text",
                         text: "では紹介する相手を選んでください"
