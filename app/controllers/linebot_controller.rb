@@ -36,8 +36,9 @@ class LinebotController < ApplicationController
                         message = {
                             type: "text",
                             text: "では紹介する相手を選んでください"
+                        }
                         
-                    else event.message["text"].include?("いいえ"){
+                    elsif event.message["text"].include?("いいえ")
                         message = {
                             type: "text",
                             text: "私の出る幕はないようです"
