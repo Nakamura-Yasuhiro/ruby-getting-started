@@ -65,18 +65,7 @@ class LinebotController < ApplicationController
            end
          when Line::Bot::Event::MemberJoined # join
          
-             message = {
-                type: "text",
-                text: "ギフト券を送ります"
-            }
-            
-            client.reply_message(event["replyToken"], message)
-             message = {
-                type: "text",
-                text: "ギフト券を送ります"
-            }
-            
-            client.reply_message(event["replyToken"], message)
+
             message = {
                 type: "image",
                 originalContentUrl: "https://yossy-style.net/wp-content/uploads/2017/07/IMG_6074.jpg",
